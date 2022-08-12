@@ -23,14 +23,25 @@ str_rounded_dt2 = rounded_dt2.strftime("%B %d,%Y");
 
 delta = (rounded_dt2 - rounded_dt1)
 
-days_mod_21 = delta.days % 21;
-days_mod_18 = delta.days % 18;
+diff = round(delta.days)
+sign = diff / abs(diff)
+diff = abs(diff)
 
-ch_21 = days_mod_21 + 1
-ch_18 = days_mod_18 + 1
+diff_mod_21 = diff%21
+diff_mod_18 = diff%18
+if (sign < 0):
+	diff_mod_21 = 21 - diff_mod_21
+	diff_mod_18 = 18 - diff_mod_18
 
-print(f"delta.days: {delta.days}")
-print(f"days_mod_21: {days_mod_21}")
+
+ch_21 = int(diff_mod_21 + 1)
+ch_18 = int(diff_mod_18 + 1)
+
+if (ch_21==22):
+	ch_21 = 1
+		
+if (ch_18==19):
+	ch_18 = 1
 
 print(f'Date: {str_rounded_dt2}')
 print(f'ch_21 = {ch_21}, ch_18 = {ch_18}')
